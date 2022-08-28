@@ -15,8 +15,8 @@ else{
 
 console.log(q)
 
-var appId = "692efab00ae66e9f48137e6ea4766fcd";
-var geoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appId}`;
+var appId = "485bbc753e29e9770f09ca55c32c6d79";
+var geoLocation = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appId}`;
 
 fetch(geoLocation)
     .then(function(response){
@@ -27,7 +27,7 @@ fetch(geoLocation)
         console.log("latitude", area.lat);
         console.log("longitude", area.lon);
 
-        var oneCall = `https://api.openweathermap.org/data/3.0/onecall?lat=${area.lat}&lon=${area.lon}&appid=${appId}&units=imperial&exclude=hourly,minutely`;
+        var oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${area.lat}&lon=${area.lon}&appid=${appId}&units=imperial&exclude=hourly,minutely`;
         
 
         fetch(oneCall)
@@ -86,7 +86,7 @@ fetch(geoLocation)
             console.log("latitude 2 ", area.lat);
             console.log("longitude 2 ", area.lon);
 
-           var oneCall = `http://api.openweathermap.org/data/2.5/forecast?lat=${area.lat}&lon=${area.lon}&appid=a83cd16f45a517250a52f83592bb80be&cnt=6&units=imperial`;
+           var oneCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${area.lat}&lon=${area.lon}&appid=a83cd16f45a517250a52f83592bb80be&cnt=6&units=imperial`;
 
 
           fetch(oneCall)
