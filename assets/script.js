@@ -1,13 +1,20 @@
-
-    
+var counter = 0;
 
 
 
 var load = function(num){
 var cities = JSON.parse(localStorage.getItem("cities"));
+if (counter == 0){
+    q = "Matthews";
+    counter++;
+}
+else{
+    q = cities[num];
+}
 
-q = cities[num];
-console.log(q);
+
+console.log(q)
+
 var appId = "692efab00ae66e9f48137e6ea4766fcd";
 var geoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appId}`;
 
