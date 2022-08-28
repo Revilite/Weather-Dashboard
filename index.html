@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
-    
+
     <!-- serch for city at top -->
     <nav class=" d-flex navbar navbar-expand-lg bg-dark py-5 justify-content-center flex-column">
-        <h1 class="text-white">The Weather Machine</h1>
-        <form class="d-flex ">
-            <input class="custom-padding-size form-control flex-row text-xl-center" type="search" id="input" placeholder="Search for a city" value="Matthews">
-            <button class="btn btn-outline-succes bg-success flex-row" type="submit" id="inputButton">Load</button>
+        <h1 class="text-white p-3">The Weather Machine</h1>
+        <form method="POST" class="d-flex" >
+            <input type="text" class="custom-padding-size form-control flex-row text-xl-center" id="input"  placeholder="Search for a city">
+            <button type="submit" class="btn btn-outline-succes bg-success flex-row" id="inputButton">Load</button>
         </form>
     </nav>
 
     <main class="bg-info d-flex align-items-center flex-column font-weight-bold " id="weather">
         <img src="" alt="weather Icon" id="image">
+        <h2 id="date"></h2>
+        <h1 id="title"></h1>
+        <p id="temp"></p>
+        <p id="wind"></p>
+        <p id="humidity"></p>
+        <p id="UV"></p>
     </main>
 
     <!-- info of weather below -->
-    <h1 class="text-xl-center bg-info m-0 ">5-Day Forecast:</h1> 
+    <h1 class="text-xl-center bg-info m-0 ">5-Day Forecast:</h1>
     <section id="day5" class="d-flex bg-info m0">
         <aside class="col bg-info">
             <img src="" alt="Icon of weather" id="image1">
@@ -34,7 +43,7 @@
             <p id="wind1"></p>
             <p id="humidity1"></p>
         </aside>
-        
+
         <aside class="col bg-info">
             <img src="" alt="Icon of weather" id="image2">
             <h2 class="text-start" id="date2"></h2>
@@ -69,6 +78,10 @@
 
     </section>
     <!-- saved lists below -->
+    <section class="d-flex justify-content-center align-items-center flex-column p-2">
+        <h2 class="d-flex flex-column">Past Searches</h2>
+        <ul id="list" class="d-flex p-2"></ul>
+    </section> 
 
 
 
@@ -83,11 +96,18 @@
 
 
 
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
+
 </html>

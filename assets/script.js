@@ -2,11 +2,14 @@
     
 
 
-// var init = function(event){
-    // event.preventDefault();
 
-var appId = "485bbc753e29e9770f09ca55c32c6d79";
-var geoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${$("input").val()}&appid=${appId}`;
+var load = function(num){
+var cities = JSON.parse(localStorage.getItem("cities"));
+
+q = cities[num];
+console.log(q);
+var appId = "692efab00ae66e9f48137e6ea4766fcd";
+var geoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appId}`;
 
 fetch(geoLocation)
     .then(function(response){
@@ -17,7 +20,7 @@ fetch(geoLocation)
         console.log("latitude", area.lat);
         console.log("longitude", area.lon);
 
-        var oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${area.lat}&lon=${area.lon}&appid=${appId}&units=imperial&exclude=hourly,minutely`;
+        var oneCall = `https://api.openweathermap.org/data/3.0/onecall?lat=${area.lat}&lon=${area.lon}&appid=${appId}&units=imperial&exclude=hourly,minutely`;
         
 
         fetch(oneCall)
@@ -26,44 +29,49 @@ fetch(geoLocation)
         })
         .then(function (data){
             console.log(data);
-            var date = document.createElement("h2");
-            var cityTitle = document.createElement("h1");
-            var temp = document.createElement("p");
-            var wind = document.createElement("p");
-            var humidity = document.createElement("p");
+            var date = $("#date");
+            var cityTitle = $("#title");
+            var temp = $("#temp");
+            var wind = $("#wind");
+            var humidity = $("#humidity");
             var icon = $("#image")
             var image = data.current.weather[0].icon;
             icon.attr("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
             icon.attr("height", "50px");
-            var UV = document.createElement("p");
+            var UV = $("#UV");
 
 
 
-            date.textContent = moment().format("MMMM Do, YYYY");
-            cityTitle.textContent = area.name;
-            temp.textContent = "temperature: " + data.current.temp + "°F";
-            wind.textContent = "wind: " + data.current.wind_speed + " MPH";
-            humidity.textContent = "humidity: " + data.current.humidity + "%";
-            UV.textContent = "UV: " + data.current.uvi;
-            UV.setAttribute("class", "rounded")
+            date.text(moment().format("MMMM Do, YYYY"));
+            if(area.state != undefined){
+            cityTitle.text(area.name + ", " + area.state);
+            }
+            else if(area.state == undefined){
+                cityTitle.text(area.name + ", " + area.country);
+            }
+            temp.text("temperature: " + data.current.temp + "°F");
+            wind.text("wind: " + data.current.wind_speed + " MPH");
+            humidity.text("humidity: " + data.current.humidity + "%");
+            UV.text("UV: " + data.current.uvi);
+            UV.attr("class", "rounded")
 
             if(data.current.uvi <= 3){
-                UV.setAttribute("class", "bg-success rounded p-2");
+                UV.attr("class", "bg-success rounded p-2");
             }
             else if (data.current.uvi > 3 && data.current.uvi < 6){
-                UV.setAttribute("class", "bg-warning rounded p-2");
+                UV.attr("class", "bg-warning rounded p-2");
             }
             else {
-                UV.setAttribute("class", "bg-danger rounded p-2");
+                UV.attr("class", "bg-danger rounded p-2");
             }
 
 
-            $("#weather").append(date);
-            $("#weather").append(cityTitle);
-            $("#weather").append(temp);
-            $("#weather").append(wind);
-            $("#weather").append(humidity);
-            $("#weather").append(UV);
+            // $("#weather").append(date);
+            // $("#weather").append(cityTitle);
+            // $("#weather").append(temp);
+            // $("#weather").append(wind);
+            // $("#weather").append(humidity);
+            // $("#weather").append(UV);
         })
     
 
@@ -95,13 +103,72 @@ fetch(geoLocation)
                 $("#temp" + i).text("Temperature: " + data.list[i].main.temp + "°F");
                 $("#wind" + i).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
                 $("#humidity" + i).text("Humidity: " + data.list[i].main.humidity + "%");
-
+                
             }
 
           })
 
     })
 })
-// }
+}
 
-// $("#input").on("submit", init)
+var input = $("#inputButton");
+var cities = [];
+
+input.on("click", function(event){
+    event.preventDefault();
+    addLS(); 
+    $("li").remove();
+    renderList();
+}) 
+
+var addLS = function(){
+    
+    
+
+    
+    if($("#input").val() != null){
+    cities.push($("#input").val());
+    localStorage.setItem("cities", JSON.stringify(cities))
+    load(cities.length - 1);
+    }
+
+}
+
+var renderList = function(){
+    var cities = JSON.parse(localStorage.getItem("cities"));
+
+    for(var i = 0; i < cities.length; i++){
+
+
+        var listItem = document.createElement("li");
+        listItem.setAttribute("list-style-type", "none");
+        listItem.setAttribute("class", "bg-dark text-white m-2 rounded p-2");
+        listItem.setAttribute("id", "cityList")
+        listItem.setAttribute("data-number", i);
+        listItem.textContent = cities[i];
+        console.log(cities[i])
+        $("#list").append(listItem);
+
+    }
+}
+
+$("#list").on("click", function(event){
+    console.log("Hello World")
+//     event.preventDefault();
+
+     var click = event.target;
+
+    if(click.matches("li") == true){
+        var value =  click.getAttribute("data-number");
+        console.log(value);
+        load(value)
+    }
+
+
+})
+
+
+
+load(0);
+renderList();
