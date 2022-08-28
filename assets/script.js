@@ -36,8 +36,14 @@ fetch(geoLocation)
             var temp = document.createElement("p");
             var wind = document.createElement("p");
             var humidity = document.createElement("p");
-            
-            date.textContent = moment().format("MMMM Do, YYYY") +" "+ data.current.weather[0].icon;
+            var icon = $("#image")
+            image = data.current.weather[0].icon;
+            icon.attr("src", `https://openweathermap.org/img/wn/${image}@2x.png`)
+            icon.attr("height", "50");
+
+
+
+            date.textContent = moment().format("MMMM Do, YYYY");
             cityTitle.textContent = area.name;
             temp.textContent = "temperature: " + data.current.temp + "F";
             wind.textContent = "wind: " + data.current.wind_speed + " MPH";
