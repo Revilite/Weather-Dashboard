@@ -12,10 +12,11 @@
 <body>
     
     <!-- serch for city at top -->
-    <nav class="navbar navbar-expand-lg bg-dark py-5 justify-content-center">
-        <form class="d-flex" role="search">
-            <input class="custom-padding-size form-control" type="search" id="input" placeholder="Name a city in here">
-            <button class="btn btn-outline-succes bg-success" type="submit" id="inputButton">Load</button>
+    <nav class=" d-flex navbar navbar-expand-lg bg-dark py-5 justify-content-center flex-column">
+        <h1 class="text-white">The Weather Machine</h1>
+        <form class="d-flex ">
+            <input class="custom-padding-size form-control flex-row text-xl-center" type="search" id="input" placeholder="Search for a city" value="Matthews">
+            <button class="btn btn-outline-succes bg-success flex-row" type="submit" id="inputButton">Load</button>
         </form>
     </nav>
 
@@ -24,39 +25,43 @@
     </main>
 
     <!-- info of weather below -->
-    <h1 class="text-xl-center ">5-Day Forecast:</h1> 
-    <section id="day5" class="d-flex">
-        
-        <aside class="card col ">
-            <h2 class="text-start">date</h2>
+    <h1 class="text-xl-center bg-info m-0 ">5-Day Forecast:</h1> 
+    <section id="day5" class="d-flex bg-info m0">
+        <aside class="col bg-info">
+            <img src="" alt="Icon of weather" id="image1">
+            <h2 class="text-start" id="date1"></h2>
             <p id="temp1"></p>
             <p id="wind1"></p>
             <p id="humidity1"></p>
         </aside>
         
-        <aside class="card col">
-            <h2>Hello World</h2>
+        <aside class="col bg-info">
+            <img src="" alt="Icon of weather" id="image2">
+            <h2 class="text-start" id="date2"></h2>
             <p id="temp2"></p>
             <p id="wind2"></p>
             <p id="humidity2"></p>
         </aside>
 
-        <aside class="card col">
-            <h2>Hello World</h2>
+        <aside class="col bg-info">
+            <img src="" alt="Icon of weather" id="image3">
+            <h2 class="text-start" id="date3"></h2>
             <p id="temp3"></p>
             <p id="wind3"></p>
             <p id="humidity3"></p>
         </aside>
 
-        <aside class="card col">
-            <h2>Hello World</h2>
+        <aside class="col bg-info">
+            <img src="" alt="Icon of weather" id="image4">
+            <h2 class="text-start" id="date4"></h2>
             <p id="temp4"></p>
             <p id="wind4"></p>
             <p id="humidity4"></p>
         </aside>
 
-        <aside class="card col">
-            <h2>Hello World</h2>
+        <aside class="col bg-info">
+            <img src="" alt="Icon of weather" id="image5">
+            <h2 class="text-start" id="date5"></h2>
             <p id="temp5"></p>
             <p id="wind5"></p>
             <p id="humidity5"></p>

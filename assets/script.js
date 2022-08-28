@@ -1,17 +1,12 @@
+
+    
+
+
+// var init = function(event){
+    // event.preventDefault();
+
 var appId = "485bbc753e29e9770f09ca55c32c6d79";
-var q = "matthews";
-
-$("#input").on("submit", function(){
-    q = $("#input").value;
-})
-
-console.log(q);
-
-var geoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appId}`;
-
-
-
-
+var geoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${$("input").val()}&appid=${appId}`;
 
 fetch(geoLocation)
     .then(function(response){
@@ -37,9 +32,9 @@ fetch(geoLocation)
             var wind = document.createElement("p");
             var humidity = document.createElement("p");
             var icon = $("#image")
-            image = data.current.weather[0].icon;
+            var image = data.current.weather[0].icon;
             icon.attr("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
-            icon.attr("height", "50");
+            icon.attr("height", "50px");
             var UV = document.createElement("p");
 
 
@@ -86,12 +81,27 @@ fetch(geoLocation)
            .then(function (data){
             console.log(data);
 
-            for(var i = )
+            for(var i = 1; i < 6; i++){
+                var dates = moment().add(i, "days").format("MMMM Do, YYYY");
+                $("#date" + i).text(dates);
 
+                var icon = $("#image" + i)
+                var image = data.list[i].weather[0].icon;
+                icon.attr("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
+                icon.attr("height", "50px");
+                icon.attr("width", "50px");
+               
 
+                $("#temp" + i).text("Temperature: " + data.list[i].main.temp + "°F");
+                $("#wind" + i).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
+                $("#humidity" + i).text("Humidity: " + data.list[i].main.humidity + "%");
 
-            
+            }
+
           })
 
     })
 })
+// }
+
+// $("#input").on("submit", init)
