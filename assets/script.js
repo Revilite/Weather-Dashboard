@@ -56,9 +56,9 @@ fetch(geoLocation)
             else if(area.state == undefined){
                 cityTitle.text(area.name + ", " + area.country);
             }
-            temp.text("temperature: " + data.current.temp + "°F");
-            wind.text("wind: " + data.current.wind_speed + " MPH");
-            humidity.text("humidity: " + data.current.humidity + "%");
+            temp.text("Temperature: " + data.current.temp + "°F");
+            wind.text("Wind: " + data.current.wind_speed + " MPH");
+            humidity.text("Humidity: " + data.current.humidity + "%");
             UV.text("UV: " + data.current.uvi);
             UV.attr("class", "rounded")
 
