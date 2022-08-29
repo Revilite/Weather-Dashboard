@@ -47,8 +47,6 @@ fetch(geoLocation)
             icon.attr("height", "50px");
             var UV = $("#UV");
 
-
-
             date.text(moment().format("MMMM Do, YYYY"));
             if(area.state != undefined){
             cityTitle.text(area.name + ", " + area.state);
@@ -71,14 +69,6 @@ fetch(geoLocation)
             else {
                 UV.attr("class", "bg-danger rounded p-2");
             }
-
-
-            // $("#weather").append(date);
-            // $("#weather").append(cityTitle);
-            // $("#weather").append(temp);
-            // $("#weather").append(wind);
-            // $("#weather").append(humidity);
-            // $("#weather").append(UV);
         })
     
 
@@ -87,7 +77,6 @@ fetch(geoLocation)
             console.log("longitude 2 ", area.lon);
 
            var oneCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${area.lat}&lon=${area.lon}&appid=a83cd16f45a517250a52f83592bb80be&cnt=6&units=imperial`;
-
 
           fetch(oneCall)
           .then(function(response){
@@ -106,7 +95,6 @@ fetch(geoLocation)
                 icon.attr("height", "50px");
                 icon.attr("width", "50px");
                
-
                 $("#temp" + i).text("Temperature: " + data.list[i].main.temp + "°F");
                 $("#wind" + i).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
                 $("#humidity" + i).text("Humidity: " + data.list[i].main.humidity + "%");
@@ -129,11 +117,9 @@ input.on("click", function(event){
     renderList();
 }) 
 
-var addLS = function(){
-    
-    
+var addLS = function(){    
+    cities = JSON.parse(localStorage.getItem("cities") || [])
 
-    
     if($("#input").val() != null){
     cities.push($("#input").val());
     localStorage.setItem("cities", JSON.stringify(cities))
@@ -146,8 +132,6 @@ var renderList = function(){
     var cities = JSON.parse(localStorage.getItem("cities"));
 
     for(var i = 0; i < cities.length; i++){
-
-
         var listItem = document.createElement("li");
         listItem.setAttribute("list-style-type", "none");
         listItem.setAttribute("class", "bg-dark text-white m-2 rounded p-2");
@@ -161,11 +145,7 @@ var renderList = function(){
 }
 
 $("#list").on("click", function(event){
-    console.log("Hello World")
-//     event.preventDefault();
-
      var click = event.target;
-
     if(click.matches("li") == true){
         var value =  click.getAttribute("data-number");
         console.log(value);
@@ -174,8 +154,6 @@ $("#list").on("click", function(event){
 
 
 })
-
-
 
 load(0);
 renderList();
