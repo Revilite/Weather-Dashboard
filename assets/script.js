@@ -4,6 +4,7 @@ var counter = 0;
 
 var load = function(num){
 var cities = JSON.parse(localStorage.getItem("cities"));
+//Loads Default
 if (counter == 0){
     q = "Matthews";
     counter++;
@@ -18,6 +19,7 @@ console.log(q)
 var appId = "485bbc753e29e9770f09ca55c32c6d79";
 var geoLocation = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appId}`;
 
+//Gets current weather readings
 fetch(geoLocation)
     .then(function(response){
         return response.json();
@@ -75,9 +77,9 @@ fetch(geoLocation)
         .then(function(locations){
             console.log("latitude 2 ", area.lat);
             console.log("longitude 2 ", area.lon);
-
+            
            var oneCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${area.lat}&lon=${area.lon}&appid=a83cd16f45a517250a52f83592bb80be&cnt=6&units=imperial`;
-
+            //Gets 5 day weather readouts
           fetch(oneCall)
           .then(function(response){
                return response.json();
@@ -109,7 +111,7 @@ fetch(geoLocation)
 
 var input = $("#inputButton");
 var cities = [];
-
+//adds and renders search bar value
 input.on("click", function(event){
     event.preventDefault();
     addLS(); 
@@ -117,9 +119,8 @@ input.on("click", function(event){
     renderList();
 }) 
 
+//adds to local storage
 var addLS = function(){    
-    
-
     if($("#input").val() != null){
     cities.push($("#input").val());
     localStorage.setItem("cities", JSON.stringify(cities))
@@ -128,6 +129,7 @@ var addLS = function(){
 
 }
 
+//renders list items to call back to
 var renderList = function(){
     var cities = JSON.parse(localStorage.getItem("cities"));
 
@@ -144,6 +146,7 @@ var renderList = function(){
     }
 }
 
+//Listens for clickon list then runs load function
 $("#list").on("click", function(event){
      var click = event.target;
     if(click.matches("li") == true){
@@ -155,5 +158,7 @@ $("#list").on("click", function(event){
 
 })
 
+
+//initial run and render
 load(0);
 renderList();
