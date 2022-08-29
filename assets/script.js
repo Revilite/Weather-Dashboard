@@ -118,7 +118,7 @@ input.on("click", function(event){
 }) 
 
 var addLS = function(){    
-    cities = JSON.parse(localStorage.getItem("cities") || [])
+    
 
     if($("#input").val() != null){
     cities.push($("#input").val());
